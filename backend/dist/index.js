@@ -5,8 +5,8 @@ const wss = new ws_1.WebSocketServer({ port: 8080 });
 let senderSocket = null;
 let receiverSocket = null;
 wss.on("connection", function connection(ws) {
-    ws.on('error', console.error);
-    ws.on('message', function message(data) {
+    ws.on("error", console.error);
+    ws.on("message", function message(data) {
         const message = JSON.parse(data.toString());
         if (message.type === "identify-as-sender") {
             senderSocket = ws;
@@ -21,5 +21,5 @@ wss.on("connection", function connection(ws) {
             senderSocket === null || senderSocket === void 0 ? void 0 : senderSocket.send(JSON.stringify({ type: "answer", answer: message.answer }));
         }
     });
-    ws.send('something');
+    ws.send("something");
 });
